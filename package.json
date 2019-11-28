@@ -1,0 +1,28 @@
+{
+  "name": "node-crud",
+  "version": "1.0.0",
+  "description": "a basic crud template made with node.js (express and mongoose)",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "node src/main.js",
+    "dev": "nodemon src/main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BRonen/node-crud.git"
+  },
+  "author": "BRonen <brennopereira6@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/BRonen/node-crud/issues"
+  },
+  "homepage": "https://github.com/BRonen/node-crud#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mongoose": "^5.7.12"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.4"
+  }
+}
