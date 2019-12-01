@@ -32,5 +32,38 @@ module.exports = {
                 "avatar_url": avatar_url,
                 "password": password
             }) );
+    },
+    
+    async delete(req, res) {
+        const { login } = req.headers;
+
+        const userDeleted = await User.findOneAndDelete({ login: login });
+
+        if(userDeleted){
+            return res.json(userDeleted);
+        }
+
+	console.log("\n");
+        console.log(userDeleted);
+        return res.json(userDeleted);
+
+    },
+    
+    async update(req, res) {
+        const { login } = req.headers;
+        
+        console.log(login);
+
+
+        const userReplaced = await User.findOneAndReplace({ 'login': login }, req.body);
+
+        if(userReplaced){
+            return res.json(userReplaced);
+        }
+
+	console.log("\n");
+        console.log(userReplaced);
+        return res.json(userReplaced);
+
     }
 };

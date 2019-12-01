@@ -20,6 +20,8 @@ routes.get('/favicon.ico', (req, res) => {
 
 routes.get('/users', UserController.index);
 routes.post('/users', UserController.store);
+routes.delete('/users', UserController.delete);
+routes.put('/users', UserController.update);
 
 routes.post('/users/:userId/links', LinksController.store);
 
