@@ -1,7 +1,7 @@
 {
-  "name": "node-crud",
+  "name": "lman-api",
   "version": "1.0.0",
-  "description": "a basic crud template made with node.js (express and mongoose)",
+  "description": "a social network made with node.js (express and mongoose)",
   "main": "src/main.js",
   "scripts": {
     "start": "node src/main.js",
@@ -9,17 +9,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/BRonen/node-crud.git"
+    "url": "git+https://github.com/BRonen/lman-api.git"
   },
   "author": "BRonen <brennopereira6@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/BRonen/node-crud/issues"
+    "url": "https://github.com/BRonen/lman-api/issues"
   },
-  "homepage": "https://github.com/BRonen/node-crud#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.7.12"
   },
   "devDependencies": {

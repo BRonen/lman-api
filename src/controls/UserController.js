@@ -1,37 +1,39 @@
 const User = require('../models/User');
+const bcrypt = require('bcryptjs');
+
+const {genToken} = require('../middle/auth.js');
 
 module.exports = {
     async index(req, res) {
-        const { login } = req.headers;
-        
-        const userExists = await User.findOne({ "login": login });
-        
-	console.log("\n");
-        console.log(userExists);
-        
-        return res.json(userExists);
+        const user = await User.findById(req.userId);
+        if(!user){
+            return res.status(404).send("user not found");
+        }
+        return res.json({
+            user
+        });
     },
     
     async store(req, res) {
-        const { login } = req.headers;
+        const { login, password } = req.body;
+        
+        console.log(req.body);
 
         const userExists = await User.findOne({ login: login });
 
         if(userExists){
-            return res.json(userExists);
+            return res.status(400).send("user exists");
         }
 
-        const { name, bio, avatar_url, password } = req.body;
-
-	console.log("\n");
-        console.log({login, name, avatar_url, password});
-            return res.json( await User.create({
-                "login": login,
-                "name": name,
-                "bio": bio,
-                "avatar_url": avatar_url,
-                "password": password
-            }) );
+        console.log({login, password});
+        const user = await User.create({
+            "login": login,
+            "password": password
+        });
+        return res.send({
+            "user": user,
+            "token": genToken({ id: user.id })
+        });
     },
     
     async delete(req, res) {
