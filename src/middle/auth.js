@@ -9,18 +9,18 @@ function genToken(params = {}){
 function authTest(req, res, next){
 	const authHeader = req.headers.authorization;
 	if(!authHeader){
-		return res.status(401).send("no token");
+		return res.status(401).send({error: "no token"});
 	}
 	const parts = authHeader.split(" ");
 	if(!parts.length === 2){
-		return res.status(401).send("token error");
+		return res.status(401).json({error: "token error"});
 	}
 	const [scheme, token] = parts;
-	if(!/^Bearer$/i.test(scheme)){
-		return res.status(401).send("no bearer");
+	if(!/^Magic$/i.test(scheme)){
+		return res.status(401).json({error: "no magic"});
 	}
 	jwt.verify(token, authConfig.secret, (err, decoded) => {
-		if(err){return res.status(401).send("token error 2");}
+		if(err){return res.status(401).json({error: "token invalid"});}
 		console.log(decoded);
 		req.userId = decoded.id;
 		return next();

@@ -13,16 +13,16 @@ const UserSchema = new Schema({
     select: false,
   },
   
-  posts:[{
+  posts: [{
     owner: {
       type: Schema.Types.ObjectId,
       ref: 'User',
       required: true,
     },
-    content: {
+    content: [{
       type: String,
       required: true,
-    },
+    }],
   }],
 
   followers: [{

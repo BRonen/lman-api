@@ -16,7 +16,7 @@ module.exports = {
     },
     async store(req, res) { //add following to logged user &
                             //add follower to target user
-        const targetId = mongoose.Types.ObjectId(req.body.targetId);
+        const targetId = mongoose.Types.ObjectId(req.params.Target);
         
         if(!await User.findById(targetId)){
             return res.status(404).send('wrong target id');
@@ -47,7 +47,7 @@ module.exports = {
     },
     async delete(req, res){ //remove following to logged user &
                             //remove follower to target user
-        const targetId = mongoose.Types.ObjectId(req.body.targetId);
+        const targetId = mongoose.Types.ObjectId(req.params.target);
 
         if(!await User.findById(targetId)){
             return res.status(404).send('wrong target id');
