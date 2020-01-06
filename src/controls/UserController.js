@@ -4,25 +4,9 @@ const bcrypt = require('bcryptjs');
 const {genToken} = require('../middle/auth.js');
 
 module.exports = {
-    async indexOwn(req, res) {
-        const user = await User.findById(req.userId);
-        if(!user){
-            return res.status(404).send("user not found");
-        }
-        return res.json({
-            user
-        });
-    },
-    
-    async indexRandom(req, res) {
-        return res.json({
-            error: "invalid route"
-        });
-    },
     
     async index(req, res) {
-        const { loginUser } = req.params; 
-        const user = await User.findOne({ login: loginUser });
+        const user = await User.findById(req.userId);
         if(!user){
             return res.status(404).send("user not found");
         }
@@ -51,17 +35,14 @@ module.exports = {
     },
     
     async delete(req, res) {
-        const { login } = req.headers;
 
-        const userDeleted = await User.findOneAndDelete({ login: login });
+        const userDeleted = await User.findByIdAndDelete(req.userId);
+
+        userDeleted.password = undefined;
 
         if(userDeleted){
             return res.json(userDeleted);
         }
-
-	console.log("\n");
-        console.log(userDeleted);
-        return res.json(userDeleted);
 
     },
     

@@ -9,11 +9,11 @@ module.exports = {
             return res.status(404).send('user not found');
         }
 
-        return res.json({posts: loggedUser.posts});
+        return res.json( loggedUser.links );
     },
     async store(req, res) {
         const loggedUser = await User.findByIdAndUpdate(req.userId,
-        {$push: { posts: { owner: req.userId, content: req.body.content } }},
+        {$push: { posts: { name: req.body.name, content: req.body.url } }},
         {safe: true, upsert: true, new: true, useFindAndModify: false});
         
         if(!loggedUser){

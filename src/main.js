@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const routes = require('./routes');
 
-mongoose.connect(process.env.MONGO_URI, {
+mongoose.connect('mongodb+srv://Default:default@mong-gse0i.mongodb.net/test?retryWrites=true&w=majority', {
 	useNewUrlParser: true,
 	useUnifiedTopology: true
 }, (err) => {

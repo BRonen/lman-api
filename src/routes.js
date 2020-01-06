@@ -2,9 +2,8 @@ const express = require('express');
 const bcrypt = require('bcryptjs');
 //https://www.youtube.com/watch?v=eFOUJvYEF2E kamaitachi - ragnarok
 const UserController = require('./controls/UserController');
-const PostsController = require('./controls/PostsController');
+const PostsController = require('./controls/LinkController');
 
-const FollowingController = require('./controls/FollowController');
 
 const User = require('./models/User');
 
@@ -12,9 +11,6 @@ const { genToken, authTest } = require('./middle/auth.js');
 
 const routes = express.Router();
 
-routes.get('/authTest', authTest, (req, res) => ( //test?
-    res.send({ok: true, userId: req.userId})
-));
 
 routes.post('/auth', async (req, res) => { //login
 	const { login, password } = req.body;
@@ -32,17 +28,12 @@ routes.post('/auth', async (req, res) => { //login
         });
 });
 
-routes.get('/', (req, res) => {res.send("server is running")});
+routes.get('/', authTest, UserController.index); //index
 routes.post('/', UserController.store); //register
-
-routes.get('/users/:loginUser', UserController.index); //search other profile
+routes.delete('/', authTest, UserController.delete); //delete
 
 routes.get('/posts', authTest, PostsController.index); //get
 routes.post('/posts', authTest, PostsController.store); //create
 routes.delete('/posts', authTest, PostsController.delete); //delete
-
-routes.get('/follow', authTest, FollowingController.index); //get who u r following
-routes.post('/follow/:target', authTest, FollowingController.store); //follow
-routes.delete('/follow/:target', authTest, FollowingController.delete); //unfollow
 
 module.exports = routes;

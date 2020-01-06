@@ -13,7 +13,7 @@ const UserSchema = new Schema({
     select: false,
   },
   
-  posts: [{
+  links: [{
     owner: {
       type: Schema.Types.ObjectId,
       ref: 'User',
@@ -24,17 +24,6 @@ const UserSchema = new Schema({
       required: true,
     }],
   }],
-
-  followers: [{
-    type: Schema.Types.ObjectId,
-    ref: 'User',
-  }],
-  
-  following: [{
-    type: Schema.Types.ObjectId,
-    ref: 'User',
-  }],
-  
 }, {
   timestamps: true,
 });
