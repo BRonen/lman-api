@@ -14,8 +14,8 @@ const UserSchema = new Schema({
   },
   
   links: [{
-    owner: {
-      type: Schema.Types.ObjectId,
+    title: {
+      type: String,
       ref: 'User',
       required: true,
     },
