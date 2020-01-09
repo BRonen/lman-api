@@ -24,7 +24,7 @@ module.exports = {
     },
     async delete(req, res) {
 
-        const postId = mongoose.Types.ObjectId(req.body.linkId);
+        const linkId = mongoose.Types.ObjectId(req.body.linkId);
 
         const loggedUser = await User.findByIdAndUpdate(req.userId,
             {$pull: { links: { _id: linkId } }},
