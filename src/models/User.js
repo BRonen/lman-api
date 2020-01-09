@@ -16,7 +16,6 @@ const UserSchema = new Schema({
   links: [{
     title: {
       type: String,
-      ref: 'User',
       required: true,
     },
     content: {
