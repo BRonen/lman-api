@@ -13,7 +13,7 @@ module.exports = {
     },
     async store(req, res) {
         const loggedUser = await User.findByIdAndUpdate(req.userId,
-        {$push: { links: { name: req.body.name, content: req.body.url } }},
+        {$push: { links: req.body }},
         {safe: true, upsert: true, new: true, useFindAndModify: false});
         
         if(!loggedUser){
