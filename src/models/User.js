@@ -19,10 +19,10 @@ const UserSchema = new Schema({
       ref: 'User',
       required: true,
     },
-    content: [{
+    content: {
       type: String,
       required: true,
-    }],
+    ],
   }],
 }, {
   timestamps: true,
