@@ -1,7 +1,7 @@
 {
   "name": "lman-api",
   "version": "1.0.0",
-  "description": "a social network made with node.js (express and mongoose)",
+  "description": "a link manager made with node.js (express and mongoose)",
   "main": "src/main.js",
   "scripts": {
     "start": "node src/main.js",
@@ -23,8 +23,5 @@
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.7.12"
-  },
-  "devDependencies": {
-    "nodemon": "^1.19.4"
   }
 }
